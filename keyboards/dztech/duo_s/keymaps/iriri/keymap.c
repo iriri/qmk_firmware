@@ -1,4 +1,4 @@
-/* Copyright 2021 DZTECH <moyi4681@live.cn>
+/* Copyright 2022 iriri
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,34 +19,56 @@ typedef enum {
     IRI_LFN = SAFE_RANGE,
     IRI_RFN,
 
-    IRI_S1Q = UC(0x2227),
-    IRI_S1W = UC(0x2228),
-    IRI_S1E = UC(0x22C2),
-    IRI_S1R = UC(0x22C3),
-    IRI_S1T = UC(0x2282),
-    IRI_S1Y = UC(0x2283),
-    IRI_S1U = UC(0x2200),
-    IRI_S1I = UC(0x221E),
-    IRI_S1O = UC(0x2203),
-    IRI_S1P = UC(0x2202),
+    IRI_SGR = UC(0x25A0),
+    IRI_S1  = UC(0x2020),
+    IRI_S2  = UC(0x2021),
+    IRI_S3  = UC(0x2e4b),
+    IRI_S4  = UC(0x00A7),
+    IRI_S5  = UC(0x2286),
+    IRI_S6  = UC(0x2287),
+    IRI_S7  = UC(0x00B6),
+    IRI_S8  = UC(0x00D7),
+    IRI_S9  = UC(0x2211),
+    IRI_S0  = UC(0x220F),
+    IRI_SMN = UC(0x2014),
+    IRI_SEQ = UC(0x00AC),
 
-    IRI_S1A = UC(0x22A5),
-    IRI_S1S = UC(0x22A4),
-    IRI_S1D = UC(0x22A2),
-    IRI_S1F = UC(0x22A3),
-    IRI_S1G = UC(0x2191),
-    IRI_S1H = UC(0x2193),
-    IRI_S1J = UC(0x2190),
-    IRI_S1K = UC(0x2192),
-    IRI_S1L = UC(0x2194),
+    IRI_SQ  = UC(0x2227),
+    IRI_SW  = UC(0x2228),
+    IRI_SE  = UC(0x22C2),
+    IRI_SR  = UC(0x22C3),
+    IRI_ST  = UC(0x2282),
+    IRI_SY  = UC(0x2283),
+    IRI_SU  = UC(0x2200),
+    IRI_SI  = UC(0x221E),
+    IRI_SO  = UC(0x2203),
+    IRI_SP  = UC(0x2202),
+    IRI_SLB = UC(0x2329),
+    IRI_SRB = UC(0x232A),
+    IRI_SPI = UC(0x2219),
 
-    IRI_S1Z = UC(0x230A),
-    IRI_S1X = UC(0x2308),
-    IRI_S1C = UC(0x2260),
-    IRI_S1V = UC(0x2243),
-    IRI_S1B = UC(0x2261),
-    IRI_S1N = UC(0x2264),
-    IRI_S1M = UC(0x2265),
+    IRI_SA  = UC(0x22A5),
+    IRI_SS  = UC(0x22A4),
+    IRI_SD  = UC(0x22A2),
+    IRI_SF  = UC(0x22A3),
+    IRI_SG  = UC(0x2191),
+    IRI_SH  = UC(0x2193),
+    IRI_SJ  = UC(0x2190),
+    IRI_SK  = UC(0x2192),
+    IRI_SL  = UC(0x2194),
+    IRI_SSC = UC(0x2234),
+    IRI_SQT = UC(0x2032),
+
+    IRI_SZ  = UC(0x230A),
+    IRI_SX  = UC(0x2308),
+    IRI_SC  = UC(0x2260),
+    IRI_SV  = UC(0x2243),
+    IRI_SB  = UC(0x2261),
+    IRI_SN  = UC(0x2264),
+    IRI_SM  = UC(0x2265),
+    IRI_SLA = UC(0x00AB),
+    IRI_SRA = UC(0x00BB),
+    IRI_SSL = UC(0x00F7),
 } iri_keycodes;
 
 #define IRI_LAYER_BASE 0
@@ -70,13 +92,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS, KC_PLUS, KC_F14,           KC_F16,
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,                    KC_F17,
         KC_BSPC, KC_DEL,  KC_INS,  KC_TRNS, KC_TRNS, KC_CAPS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS,  KC_DEL,  KC_BSPC,                   KC_TRNS, KC_F18,
-        KC_TRNS, IRI_LFN, KC_TRNS,                            KC_TRNS,                            KC_TRNS, IRI_RFN,          KC_TRNS, KC_TRNS, KC_TRNS),
+        KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS),
 
     [IRI_LAYER_XSFT] = LAYOUT_65_ansi_blocker(
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,
-        KC_TRNS, IRI_S1Q, IRI_S1W, IRI_S1E, IRI_S1R, IRI_S1T, IRI_S1Y, IRI_S1U, IRI_S1I, IRI_S1O, IRI_S1P, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,
-        KC_TRNS, IRI_S1A, IRI_S1S, IRI_S1D, IRI_S1F, IRI_S1G, IRI_S1H, IRI_S1J, IRI_S1K, IRI_S1L, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,
-        KC_TRNS, IRI_S1Z, IRI_S1X, IRI_S1C, IRI_S1V, IRI_S1B, IRI_S1N, IRI_S1M, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS, KC_TRNS,
+        IRI_SGR, IRI_S1,  IRI_S2,  IRI_S3,  IRI_S4,  IRI_S5,  IRI_S6,  IRI_S7,  IRI_S8,  IRI_S9,  IRI_S0,  IRI_SMN, IRI_SEQ, KC_TRNS,          KC_TRNS,
+        KC_TRNS, IRI_SQ,  IRI_SW,  IRI_SE,  IRI_SR,  IRI_ST,  IRI_SY,  IRI_SU,  IRI_SI,  IRI_SO,  IRI_SP,  IRI_SLB, IRI_SRB, IRI_SPI,          KC_TRNS,
+        KC_TRNS, IRI_SA,  IRI_SS,  IRI_SD,  IRI_SF,  IRI_SG,  IRI_SH,  IRI_SJ,  IRI_SK,  IRI_SL,  IRI_SSC, IRI_SQT, KC_TRNS,                   KC_TRNS,
+        KC_TRNS, IRI_SZ,  IRI_SX,  IRI_SC,  IRI_SV,  IRI_SB,  IRI_SN,  IRI_SM,  IRI_SLA, IRI_SRA, IRI_SSL, KC_TRNS,                   KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS),
 
     [IRI_LAYER_XFN] = LAYOUT_65_ansi_blocker(
@@ -89,261 +111,131 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 static const uint16_t IRI_TAPPING_PERIOD = 200;
 
-#define IRI_STATE_NORMAL 0
-#define IRI_STATE_LSFT   1
-#define IRI_STATE_LSFTL  2
-#define IRI_STATE_RSFT   3
-#define IRI_STATE_RSFTL  4
-#define IRI_STATE_XSFT   5
-#define IRI_STATE_XSFTL  6
-#define IRI_STATE_LFN    7
-#define IRI_STATE_LFNL   8
-#define IRI_STATE_RFN    9
-#define IRI_STATE_RFNL   10
-#define IRI_STATE_XFN    11
-#define IRI_STATE_XFNL   12
+static uint16_t iri_last_kc = 0, iri_last_tap_kc = 0;
+static uint16_t iri_last_ts, iri_last_tap_ts;
 
-static const size_t IRI_IDX_KC_LSFT = 0;
-static const size_t IRI_IDX_KC_RSFT = 1;
-static const size_t IRI_IDX_IRI_LFN = 2;
-static const size_t IRI_IDX_IRI_RFN = 3;
+#define IRI_BIT_KC_LSFT 0x1
+#define IRI_BIT_KC_RSFT 0x2
+#define IRI_BIT_IRI_LFN 0x1
+#define IRI_BIT_IRI_RFN 0x2
 
-// Threads? Never heard of them.
-static uint8_t  iri_state       = IRI_STATE_NORMAL;
-static bool     iri_down[]      = {false, false, false, false};
-static uint16_t iri_last_kc     = 0;
-static uint16_t iri_last_ts     = 0;
-static uint16_t iri_last_tap_kc = 0;
-static uint16_t iri_last_tap_ts = 0;
+static uint8_t iri_state_sft = 0x0, iri_state_fn = 0x0;
+static uint8_t iri_locked_sft = 0x0, iri_locked_fn = 0x0;
 
 static bool
-iri_was_double_tapped(uint16_t keycode, keyrecord_t* record) {
+iri_was_double_tapped(uint16_t keycode, keyrecord_t *record) {
     // assert(!record->event.pressed);
+    // assert(iri_last_tap_kc == 0 || keycode == iri_last_tap_kc);
     if (keycode != iri_last_kc) {
-        goto reset_last_tap_kc;
-    }
-    if (record->event.time - iri_last_ts < IRI_TAPPING_PERIOD) {
-        if (keycode == iri_last_tap_kc &&
-            record->event.time - iri_last_tap_ts < IRI_TAPPING_PERIOD * 2)
-        {
-            return true;
-        }
-        iri_last_tap_kc = keycode;
-        iri_last_tap_ts = record->event.time;
         return false;
     }
-reset_last_tap_kc:
-    iri_last_tap_kc = 0;
+    if (record->event.time - iri_last_ts > IRI_TAPPING_PERIOD) {
+        return false;
+    }
+    if (record->event.time - iri_last_tap_ts < IRI_TAPPING_PERIOD * 2) {
+        return true;
+    }
+    iri_last_tap_kc = keycode;
+    iri_last_tap_ts = record->event.time;
     return false;
 }
 
 static void
 iri_process_kc_lsft(keyrecord_t *record) {
-    switch (iri_state) {
-    break;case IRI_STATE_NORMAL:
-        // assert(record->event.pressed);
-        register_code(KC_LSFT);
-        iri_state = IRI_STATE_LSFT;
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_LSFT:
-        // assert(!record->event.pressed);
-        if (iri_was_double_tapped(KC_LSFT, record)) {
-            iri_state = IRI_STATE_LSFTL;
-        } else {
-            unregister_code(KC_LSFT);
-            iri_state = IRI_STATE_NORMAL;
-        }
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_LSFTL:
-        // assert(record->event.pressed);
-        iri_state = IRI_STATE_LSFT;
-    break;case IRI_STATE_RSFT:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XSFT);
-        iri_state = IRI_STATE_XSFT;
-    break;case IRI_STATE_RSFTL:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XSFT);
-        iri_state = IRI_STATE_XSFTL;
-    break;case IRI_STATE_XSFT:
-        // assert(!record->event.pressed);
-        layer_off(IRI_LAYER_XSFT);
-        iri_state = IRI_STATE_RSFT;
-    break;case IRI_STATE_XSFTL:
-        if (record->event.pressed) {
-            layer_off(IRI_LAYER_XSFT);
-            iri_state = IRI_STATE_LSFT;
-        }
-    break;default:
-        if (!iri_down[IRI_IDX_KC_RSFT]) {
-            if (record->event.pressed) {
-                register_code(KC_LSFT);
-            } else {
-                unregister_code(KC_LSFT);
-            }
-        }
+    if (iri_last_tap_kc != KC_LSFT) {
+        iri_last_tap_kc = 0;
     }
-    iri_last_tap_kc = 0;
-skip_reset_last_tap:
-    iri_down[IRI_IDX_KC_LSFT] = record->event.pressed;
+    if (record->event.pressed) {
+        iri_state_sft |= IRI_BIT_KC_LSFT;
+    } else if (iri_was_double_tapped(KC_LSFT, record)) {
+        iri_locked_sft |= IRI_BIT_KC_LSFT;
+    } else if (iri_locked_sft == 0x3) {
+        iri_state_sft = iri_locked_sft = 0x0;
+    } else {
+        iri_state_sft  &= ~IRI_BIT_KC_LSFT;
+        iri_locked_sft &= ~IRI_BIT_KC_LSFT;
+    }
 }
 
 static void
 iri_process_kc_rsft(keyrecord_t *record) {
-    switch (iri_state) {
-    break;case IRI_STATE_NORMAL:
-        // assert(record->event.pressed);
-        register_code(KC_LSFT);
-        iri_state = IRI_STATE_RSFT;
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_LSFT:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XSFT);
-        iri_state = IRI_STATE_XSFT;
-    break;case IRI_STATE_LSFTL:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XSFT);
-        iri_state = IRI_STATE_XSFTL;
-    break;case IRI_STATE_RSFT:
-        // assert(!record->event.pressed);
-        if (iri_was_double_tapped(KC_RSFT, record)) {
-            iri_state = IRI_STATE_RSFTL;
-        } else {
-            unregister_code(KC_LSFT);
-            iri_state = IRI_STATE_NORMAL;
-        }
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_RSFTL:
-        // assert(record->event.pressed);
-        iri_state = IRI_STATE_RSFT;
-    break;case IRI_STATE_XSFT:
-        // assert(!record->event.pressed);
-        layer_off(IRI_LAYER_XSFT);
-        iri_state = IRI_STATE_LSFT;
-    break;case IRI_STATE_XSFTL:
-        if (record->event.pressed) {
-            layer_off(IRI_LAYER_XSFT);
-            iri_state = IRI_STATE_RSFT;
-        }
-    break;default:
-        if (!iri_down[IRI_IDX_KC_LSFT]) {
-            if (record->event.pressed) {
-                register_code(KC_LSFT);
-            } else {
-                unregister_code(KC_LSFT);
-            }
-        }
+    if (iri_last_tap_kc != KC_RSFT) {
+        iri_last_tap_kc = 0;
     }
-    iri_last_tap_kc = 0;
-skip_reset_last_tap:
-    iri_down[IRI_IDX_KC_RSFT] = record->event.pressed;
+    if (record->event.pressed) {
+        iri_state_sft |= IRI_BIT_KC_RSFT;
+    } else if (iri_was_double_tapped(KC_RSFT, record)) {
+        iri_locked_sft |= IRI_BIT_KC_RSFT;
+    } else if (iri_locked_sft == 0x3) {
+        iri_state_sft = iri_locked_sft = 0x0;
+    } else {
+        iri_state_sft  &= ~IRI_BIT_KC_RSFT;
+        iri_locked_sft &= ~IRI_BIT_KC_RSFT;
+    }
 }
 
 static void
 iri_process_iri_lfn(keyrecord_t *record) {
-    switch (iri_state) {
-    break;case IRI_STATE_NORMAL:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_FN);
-        iri_state = IRI_STATE_LFN;
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_LFN:
-        // assert(!record->event.pressed);
-        if (iri_was_double_tapped(IRI_LFN, record)) {
-            iri_state = IRI_STATE_LFNL;
-        } else {
-            layer_off(IRI_LAYER_FN);
-            iri_state = IRI_STATE_NORMAL;
-        }
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_LFNL:
-        // assertA(record->event.pressed);
-        iri_state = IRI_STATE_LFN;
-    break;case IRI_STATE_RFN:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XFN);
-        iri_state = IRI_STATE_XFN;
-    break;case IRI_STATE_RFNL:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XFN);
-        iri_state = IRI_STATE_XFNL;
-    break;case IRI_STATE_XFN:
-        // assert(!record->event.pressed);
-        layer_off(IRI_LAYER_XFN);
-        iri_state = IRI_STATE_RFN;
-    break;case IRI_STATE_XFNL:
-        if (record->event.pressed) {
-            layer_off(IRI_LAYER_XFN);
-            layer_off(IRI_LAYER_FN);
-            iri_state = IRI_STATE_NORMAL;
-        }
-    break;default:
-        if (!iri_down[IRI_IDX_IRI_RFN]) {
-            if (record->event.pressed) {
-                layer_on(IRI_LAYER_FN);
-            } else {
-                layer_off(IRI_LAYER_FN);
-            }
-        }
+    if (iri_last_tap_kc != IRI_LFN) {
+        iri_last_tap_kc = 0;
     }
-    iri_last_tap_kc = 0;
-skip_reset_last_tap:
-    iri_down[IRI_IDX_IRI_LFN] = record->event.pressed;
+    if (record->event.pressed) {
+        iri_state_fn |= IRI_BIT_IRI_LFN;
+    } else if (iri_was_double_tapped(IRI_LFN, record)) {
+        iri_locked_fn |= IRI_BIT_IRI_LFN;
+    } else if (iri_locked_fn == 0x3) {
+        iri_state_fn = iri_locked_fn = 0x0;
+    } else {
+        iri_state_fn  &= ~IRI_BIT_IRI_LFN;
+        iri_locked_fn &= ~IRI_BIT_IRI_LFN;
+    }
 }
 
 static void
 iri_process_iri_rfn(keyrecord_t *record) {
-    switch (iri_state) {
-    break;case IRI_STATE_NORMAL:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_FN);
-        iri_state = IRI_STATE_RFN;
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_LFN:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XFN);
-        iri_state = IRI_STATE_XFN;
-    break;case IRI_STATE_LFNL:
-        // assert(record->event.pressed);
-        layer_on(IRI_LAYER_XFN);
-        iri_state = IRI_STATE_XFNL;
-    break;case IRI_STATE_RFN:
-        // assert(!record->event.pressed);
-        if (iri_was_double_tapped(IRI_RFN, record)) {
-            iri_state = IRI_STATE_RFNL;
-        } else {
-            layer_off(IRI_LAYER_FN);
-            iri_state = IRI_STATE_NORMAL;
-        }
-        goto skip_reset_last_tap;
-    break;case IRI_STATE_RFNL:
-        // assert(record->event.pressed);
-        iri_state = IRI_STATE_RFN;
-    break;case IRI_STATE_XFN:
-        // assert(!record->event.pressed);
-        layer_off(IRI_LAYER_XFN);
-        iri_state = IRI_STATE_LFN;
-    break;case IRI_STATE_XFNL:
-        if (record->event.pressed) {
-            layer_off(IRI_LAYER_XFN);
-            layer_off(IRI_LAYER_FN);
-            iri_state = IRI_STATE_NORMAL;
-        }
-    break;default:
-        if (!iri_down[IRI_IDX_IRI_LFN]) {
-            if (record->event.pressed) {
-                layer_on(IRI_LAYER_FN);
-            } else {
-                layer_off(IRI_LAYER_FN);
-            }
-        }
+    if (iri_last_tap_kc != IRI_RFN) {
+        iri_last_tap_kc = 0;
     }
-    iri_last_tap_kc = 0;
-skip_reset_last_tap:
-    iri_down[IRI_IDX_IRI_RFN] = record->event.pressed;
+    if (record->event.pressed) {
+        iri_state_fn |= IRI_BIT_IRI_RFN;
+    } else if (iri_was_double_tapped(IRI_RFN, record)) {
+        iri_locked_fn |= IRI_BIT_IRI_RFN;
+    } else if (iri_locked_fn == 0x3) {
+        iri_state_fn = iri_locked_fn = 0x0;
+    } else {
+        iri_state_fn  &= ~IRI_BIT_IRI_RFN;
+        iri_locked_fn &= ~IRI_BIT_IRI_RFN;
+    }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+static void
+iri_set_layers(void) {
+    switch (iri_state_sft) {
+    break;case 0x3:
+        register_code(KC_LSFT);
+        layer_on(IRI_LAYER_XSFT);
+    break;case 0x0:
+        layer_off(IRI_LAYER_XSFT);
+        unregister_code(KC_LSFT);
+    break;default:
+        layer_off(IRI_LAYER_XSFT);
+        register_code(KC_LSFT);
+    }
+    switch (iri_state_fn) {
+    break;case 0x3:
+        layer_on(IRI_LAYER_FN);
+        layer_on(IRI_LAYER_XFN);
+    break;case 0x0:
+        layer_off(IRI_LAYER_XFN);
+        layer_off(IRI_LAYER_FN);
+    break;default :
+        layer_off(IRI_LAYER_XFN);
+        layer_on(IRI_LAYER_FN);
+    }
+}
+
+bool
+process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     break;case KC_LSFT: iri_process_kc_lsft(record);
     break;case KC_RSFT: iri_process_kc_rsft(record);
@@ -355,5 +247,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     iri_last_kc = keycode;
     iri_last_ts = record->event.time;
+    iri_set_layers();
     return false;
 }
