@@ -129,7 +129,9 @@ iri_was_double_tapped(uint16_t keycode, keyrecord_t *record) {
     if (record->event.time - iri_last_ts > IRI_TAPPING_PERIOD) {
         return false;
     }
-    if (record->event.time - iri_last_tap_ts < IRI_TAPPING_PERIOD * 2) {
+    if (iri_last_tap_kc != 0 &&
+        record->event.time - iri_last_tap_ts < IRI_TAPPING_PERIOD * 2)
+    {
         return true;
     }
     iri_last_tap_kc = keycode;
