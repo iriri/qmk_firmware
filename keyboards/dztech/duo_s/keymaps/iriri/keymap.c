@@ -22,7 +22,7 @@ typedef enum {
     IRI_SGR = UC(0x25A0),
     IRI_S1  = UC(0x2020),
     IRI_S2  = UC(0x2021),
-    IRI_S3  = UC(0x2e4b),
+    IRI_S3  = UC(0x2248),
     IRI_S4  = UC(0x00A7),
     IRI_S5  = UC(0x2286),
     IRI_S6  = UC(0x2287),
@@ -102,14 +102,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS),
 
     [IRI_LAYER_XFN] = LAYOUT_65_ansi_blocker(
-        KC_TRNS, TO(0),   TO(1),   TO(2),   TO(3),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,
-        KC_TRNS, IRI_RMI, RGB_SPI, RGB_HUI, RGB_SAI, RGB_VAI, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS,          KC_TRNS,
-        KC_TRNS, IRI_RMD, RGB_SPD, RGB_HUD, RGB_SAD, RGB_VAD, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,
-        KC_TRNS, RGB_TOG, KC_TRNS, KC_TRNS, UC_M_LN, UC_M_WI, UC_M_MA, RESET,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_PGUP, KC_TRNS,
+        KC_TRNS, TO(0),   TO(1),   TO(2),   TO(3),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, UC_M_LN, UC_M_WI, UC_M_MA, RESET,   KC_TRNS,          KC_TRNS,
+        KC_TRNS, IRI_RMI, RGB_SPI, RGB_VAI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS, KC_TRNS,          KC_TRNS,
+        KC_TRNS, IRI_RMD, RGB_SPD, RGB_VAD, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,
+        KC_TRNS, RGB_TOG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_TRNS, KC_TRNS,                   KC_PGUP, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_HOME, KC_PGDN, KC_END),
 };
 
-static const uint16_t IRI_TAPPING_PERIOD = 200;
+static const uint16_t IRI_PERIOD_TAP        = 200;
+static const uint16_t IRI_PERIOD_DOUBLE_TAP = 300;
 
 static uint16_t iri_last_kc = 0, iri_last_tap_kc = 0;
 static uint16_t iri_last_ts, iri_last_tap_ts;
@@ -129,16 +130,15 @@ iri_was_double_tapped(uint16_t keycode, keyrecord_t *record) {
     if (keycode != iri_last_kc) {
         return false;
     }
-    if (record->event.time - iri_last_ts > IRI_TAPPING_PERIOD) {
+    if ((uint16_t)(record->event.time - iri_last_ts) > IRI_PERIOD_TAP) {
         return false;
     }
-    if (iri_last_tap_kc != 0 &&
-        record->event.time - iri_last_tap_ts < IRI_TAPPING_PERIOD * 2)
-    {
+    uint16_t d = record->event.time - iri_last_tap_ts;
+    iri_last_tap_ts = record->event.time;
+    if (iri_last_tap_kc != 0 && d <= IRI_PERIOD_DOUBLE_TAP) {
         return true;
     }
     iri_last_tap_kc = keycode;
-    iri_last_tap_ts = record->event.time;
     return false;
 }
 
@@ -251,4 +251,16 @@ process_record_user(uint16_t keycode, keyrecord_t *record) {
     iri_last_ts = record->event.time;
     iri_set_layers();
     return false;
+}
+
+void
+housekeeping_task_user(void) {
+    if ((uint16_t)(timer_read() - iri_last_tap_ts) > IRI_PERIOD_DOUBLE_TAP) {
+        iri_last_tap_kc = 0;
+    }
+}
+
+void
+suspend_power_down_user(void) {
+    iri_last_tap_kc = 0;
 }

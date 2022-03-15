@@ -22,7 +22,7 @@ typedef enum {
     IRI_SGR = UC(0x25A0),
     IRI_S1  = UC(0x2020),
     IRI_S2  = UC(0x2021),
-    IRI_S3  = UC(0x2e4b),
+    IRI_S3  = UC(0x2248),
     IRI_S4  = UC(0x00A7),
     IRI_S5  = UC(0x2286),
     IRI_S6  = UC(0x2287),
@@ -78,18 +78,18 @@ typedef enum {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [IRI_LAYER_BASE] = LAYOUT_all(
-        TO(0),   KC_F17,     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_BSPC, KC_INS,
-        TO(1),   KC_F16,     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,          KC_DEL,
-        TO(2),   KC_F15,     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,                    KC_PGUP,
-        RESET,   KC_F14,     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                   KC_UP,   KC_PGDN,
+        KC_F22,  KC_F17,     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_BSPC, KC_INS,
+        KC_F21,  KC_F16,     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,          KC_DEL,
+        KC_F20,  KC_F15,     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,                    KC_PGUP,
+        KC_F19,  KC_F14,     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                   KC_UP,   KC_PGDN,
         KC_F18,  KC_F13,     KC_LCTL, IRI_LFN, KC_LALT,                            KC_SPC,                             KC_RGUI, IRI_RFN,          KC_LEFT, KC_DOWN, KC_RGHT),
 
     [IRI_LAYER_FN] = LAYOUT_all(
-        KC_F19,  KC_TRNS,    KC_LSFT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F13,  KC_F15,
-        KC_F20,  KC_TRNS,    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS, KC_PLUS, KC_F14,           KC_F16,
-        KC_F21,  KC_TRNS,    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,                    KC_F17,
-        KC_F22,  KC_TRNS,    KC_BSPC, KC_DEL,  KC_INS,  KC_TRNS, KC_TRNS, KC_CAPS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS,  KC_DEL,  KC_BSPC,                   KC_TRNS, KC_F18,
-        KC_F23,  KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS),
+        KC_TRNS, KC_TRNS,    KC_LSFT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_F13,  KC_F13,  KC_F15,
+        KC_TRNS, KC_TRNS,    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS, KC_PLUS, KC_F14,           KC_F16,
+        KC_TRNS, KC_TRNS,    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,                    KC_F17,
+        KC_TRNS, KC_TRNS,    KC_BSPC, KC_DEL,  KC_INS,  KC_TRNS, KC_TRNS, KC_CAPS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS,  KC_DEL,  KC_BSPC,                   KC_TRNS, KC_F18,
+        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS),
 
     [IRI_LAYER_XSFT] = LAYOUT_all(
         KC_TRNS, KC_TRNS,    IRI_SGR, IRI_S1,  IRI_S2,  IRI_S3,  IRI_S4,  IRI_S5,  IRI_S6,  IRI_S7,  IRI_S8,  IRI_S9,  IRI_S0,  IRI_SMN, IRI_SEQ, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -99,14 +99,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS),
 
     [IRI_LAYER_XFN] = LAYOUT_all(
-        KC_TRNS, KC_TRNS,    KC_TRNS, TO(0),   TO(1),   TO(2),   TO(3),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS,          KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, TO(0),   TO(1),   TO(2),   TO(3),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, UC_M_LN, UC_M_WI, UC_M_MA, RESET,   KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS, KC_TRNS,          KC_TRNS,
         KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, UC_M_LN, UC_M_WI, UC_M_MA, RESET,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_PGUP, KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_TRNS, KC_TRNS,                   KC_PGUP, KC_TRNS,
         KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_HOME, KC_PGDN, KC_END),
 };
 
-static const uint16_t IRI_TAPPING_PERIOD = 200;
+static const uint16_t IRI_PERIOD_TAP        = 200;
+static const uint16_t IRI_PERIOD_DOUBLE_TAP = 300;
 
 static uint16_t iri_last_kc = 0, iri_last_tap_kc = 0;
 static uint16_t iri_last_ts, iri_last_tap_ts;
@@ -126,16 +127,15 @@ iri_was_double_tapped(uint16_t keycode, keyrecord_t *record) {
     if (keycode != iri_last_kc) {
         return false;
     }
-    if (record->event.time - iri_last_ts > IRI_TAPPING_PERIOD) {
+    if ((uint16_t)(record->event.time - iri_last_ts) > IRI_PERIOD_TAP) {
         return false;
     }
-    if (iri_last_tap_kc != 0 &&
-        record->event.time - iri_last_tap_ts < IRI_TAPPING_PERIOD * 2)
-    {
+    uint16_t d = record->event.time - iri_last_tap_ts;
+    iri_last_tap_ts = record->event.time;
+    if (iri_last_tap_kc != 0 && d <= IRI_PERIOD_DOUBLE_TAP) {
         return true;
     }
     iri_last_tap_kc = keycode;
-    iri_last_tap_ts = record->event.time;
     return false;
 }
 
@@ -248,4 +248,16 @@ process_record_user(uint16_t keycode, keyrecord_t *record) {
     iri_last_ts = record->event.time;
     iri_set_layers();
     return false;
+}
+
+void
+housekeeping_task_user(void) {
+    if ((uint16_t)(timer_read() - iri_last_tap_ts) > IRI_PERIOD_DOUBLE_TAP) {
+        iri_last_tap_kc = 0;
+    }
+}
+
+void
+suspend_power_down_user(void) {
+    iri_last_tap_kc = 0;
 }
