@@ -45,7 +45,7 @@ typedef enum {
     IRI_SP  = UC(0x2202),
     IRI_SLB = UC(0x2329),
     IRI_SRB = UC(0x232A),
-    IRI_SPI = UC(0x2219),
+    IRI_SBS = UC(0x2219),
 
     IRI_SA  = UC(0x22A5),
     IRI_SS  = UC(0x22A4),
@@ -66,9 +66,31 @@ typedef enum {
     IRI_SB  = UC(0x2261),
     IRI_SN  = UC(0x2264),
     IRI_SM  = UC(0x2265),
-    IRI_SLA = UC(0x00AB),
-    IRI_SRA = UC(0x00BB),
+    IRI_SCM = UC(0x00AB),
+    IRI_SPR = UC(0x00BB),
     IRI_SSL = UC(0x00F7),
+
+    IRI_FQ = UC(0x00B9),
+    IRI_FW = UC(0x00B2),
+    IRI_FE = UC(0x00B3),
+    IRI_FR = UC(0x2074),
+    IRI_FT = UC(0x2075),
+    IRI_FY = UC(0x2076),
+    IRI_FU = UC(0x2077),
+    IRI_FI = UC(0x2078),
+    IRI_FO = UC(0x2079),
+    IRI_FP = UC(0x2070),
+
+    IRI_FZ  = UC(0x2081),
+    IRI_FX  = UC(0x2082),
+    IRI_FC  = UC(0x2083),
+    IRI_FV  = UC(0x2084),
+    IRI_FB  = UC(0x2085),
+    IRI_FN  = UC(0x2086),
+    IRI_FM  = UC(0x2087),
+    IRI_FCM = UC(0x2088),
+    IRI_FPR = UC(0x2089),
+    IRI_FSL = UC(0x2080),
 } iri_keycodes;
 
 #define IRI_LAYER_BASE 0
@@ -93,24 +115,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [IRI_LAYER_XSFT] = LAYOUT_all(
         KC_TRNS, KC_TRNS,    IRI_SGR, IRI_S1,  IRI_S2,  IRI_S3,  IRI_S4,  IRI_S5,  IRI_S6,  IRI_S7,  IRI_S8,  IRI_S9,  IRI_S0,  IRI_SMN, IRI_SEQ, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS, IRI_SQ,  IRI_SW,  IRI_SE,  IRI_SR,  IRI_ST,  IRI_SY,  IRI_SU,  IRI_SI,  IRI_SO,  IRI_SP,  IRI_SLB, IRI_SRB, IRI_SPI,          KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, IRI_SQ,  IRI_SW,  IRI_SE,  IRI_SR,  IRI_ST,  IRI_SY,  IRI_SU,  IRI_SI,  IRI_SO,  IRI_SP,  IRI_SLB, IRI_SRB, IRI_SBS,          KC_TRNS,
         KC_TRNS, KC_TRNS,    KC_TRNS, IRI_SA,  IRI_SS,  IRI_SD,  IRI_SF,  IRI_SG,  IRI_SH,  IRI_SJ,  IRI_SK,  IRI_SL,  IRI_SSC, IRI_SQT, KC_TRNS,                   KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS, IRI_SZ,  IRI_SX,  IRI_SC,  IRI_SV,  IRI_SB,  IRI_SN,  IRI_SM,  IRI_SLA, IRI_SRA, IRI_SSL, KC_TRNS,                   KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, IRI_SZ,  IRI_SX,  IRI_SC,  IRI_SV,  IRI_SB,  IRI_SN,  IRI_SM,  IRI_SCM, IRI_SPR, IRI_SSL, KC_TRNS,                   KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS),
 
     [IRI_LAYER_XFN] = LAYOUT_all(
-        KC_TRNS, KC_TRNS,    KC_TRNS, TO(0),   TO(1),   TO(2),   TO(3),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, UC_M_LN, UC_M_WI, UC_M_MA, RESET,   KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS, KC_TRNS,          KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,
-        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_TRNS, KC_TRNS,                   KC_PGUP, KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, UC_M_LN, UC_M_WI, UC_M_MA, RESET,   KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, IRI_FQ,  IRI_FW,  IRI_FE,  IRI_FR,  IRI_FT,  IRI_FY,  IRI_FU,  IRI_FI,  IRI_FO,  IRI_FP,  KC_PSCR, KC_SLCK, KC_PAUS,          KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,
+        KC_TRNS, KC_TRNS,    KC_TRNS, IRI_FZ,  IRI_FX,  IRI_FC,  IRI_FV,  IRI_FB,  IRI_FN,  IRI_FM,  IRI_FCM, IRI_FPR, IRI_FSL, KC_TRNS,                   KC_PGUP, KC_TRNS,
         KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_HOME, KC_PGDN, KC_END),
 };
 
 static const uint16_t IRI_PERIOD_TAP        = 200;
 static const uint16_t IRI_PERIOD_DOUBLE_TAP = 300;
 
-static uint16_t iri_last_kc = 0, iri_last_tap_kc = 0;
-static uint16_t iri_last_ts, iri_last_tap_ts;
+#define IRI_IDX_KC_LSFT 0
+#define IRI_IDX_KC_RSFT 1
+#define IRI_IDX_IRI_LFN 2
+#define IRI_IDX_IRI_RFN 3
+#define IRI_N_TAP_MODS  4
+
+#define IRI_TAPPED      0x8000u
+#define IRI_TAP_TS_MASK 0x7fffu
+
+static uint16_t iri_last_ts[IRI_N_TAP_MODS]     = {0, 0, 0, 0};
+static uint16_t iri_last_tap_ts[IRI_N_TAP_MODS] = {0, 0, 0, 0};
 
 #define IRI_BIT_KC_LSFT 0x1
 #define IRI_BIT_KC_RSFT 0x2
@@ -121,32 +152,29 @@ static uint8_t iri_state_sft = 0x0, iri_state_fn = 0x0;
 static uint8_t iri_locked_sft = 0x0, iri_locked_fn = 0x0;
 
 static bool
-iri_was_double_tapped(uint16_t keycode, keyrecord_t *record) {
+iri_was_double_tapped(uint16_t keycode, keyrecord_t *record, size_t idx) {
     // assert(!record->event.pressed);
-    // assert(iri_last_tap_kc == 0 || keycode == iri_last_tap_kc);
-    if (keycode != iri_last_kc) {
+    if ((uint16_t)(record->event.time - iri_last_ts[idx]) > IRI_PERIOD_TAP) {
+        iri_last_tap_ts[idx] = 0;
         return false;
     }
-    if ((uint16_t)(record->event.time - iri_last_ts) > IRI_PERIOD_TAP) {
+    uint16_t lt = iri_last_tap_ts[idx];
+    iri_last_tap_ts[idx] = record->event.time | IRI_TAPPED;
+    if ((lt & IRI_TAPPED) == 0) {
         return false;
     }
-    uint16_t d = record->event.time - iri_last_tap_ts;
-    iri_last_tap_ts = record->event.time;
-    if (iri_last_tap_kc != 0 && d <= IRI_PERIOD_DOUBLE_TAP) {
-        return true;
+    uint16_t d = (record->event.time - lt) & IRI_TAP_TS_MASK;
+    if (d > IRI_PERIOD_DOUBLE_TAP) {
+        return false;
     }
-    iri_last_tap_kc = keycode;
-    return false;
+    return true;
 }
 
-static void
+static void __attribute__((always_inline))
 iri_process_kc_lsft(keyrecord_t *record) {
-    if (iri_last_tap_kc != KC_LSFT) {
-        iri_last_tap_kc = 0;
-    }
     if (record->event.pressed) {
         iri_state_sft |= IRI_BIT_KC_LSFT;
-    } else if (iri_was_double_tapped(KC_LSFT, record)) {
+    } else if (iri_was_double_tapped(KC_LSFT, record, IRI_IDX_KC_LSFT)) {
         iri_locked_sft |= IRI_BIT_KC_LSFT;
     } else if (iri_locked_sft == 0x3) {
         iri_state_sft = iri_locked_sft = 0x0;
@@ -154,16 +182,14 @@ iri_process_kc_lsft(keyrecord_t *record) {
         iri_state_sft  &= ~IRI_BIT_KC_LSFT;
         iri_locked_sft &= ~IRI_BIT_KC_LSFT;
     }
+    iri_last_ts[IRI_IDX_KC_LSFT] = record->event.time;
 }
 
-static void
+static void __attribute__((always_inline))
 iri_process_kc_rsft(keyrecord_t *record) {
-    if (iri_last_tap_kc != KC_RSFT) {
-        iri_last_tap_kc = 0;
-    }
     if (record->event.pressed) {
         iri_state_sft |= IRI_BIT_KC_RSFT;
-    } else if (iri_was_double_tapped(KC_RSFT, record)) {
+    } else if (iri_was_double_tapped(KC_RSFT, record, IRI_IDX_KC_RSFT)) {
         iri_locked_sft |= IRI_BIT_KC_RSFT;
     } else if (iri_locked_sft == 0x3) {
         iri_state_sft = iri_locked_sft = 0x0;
@@ -171,16 +197,14 @@ iri_process_kc_rsft(keyrecord_t *record) {
         iri_state_sft  &= ~IRI_BIT_KC_RSFT;
         iri_locked_sft &= ~IRI_BIT_KC_RSFT;
     }
+    iri_last_ts[IRI_IDX_KC_RSFT] = record->event.time;
 }
 
-static void
+static void __attribute__((always_inline))
 iri_process_iri_lfn(keyrecord_t *record) {
-    if (iri_last_tap_kc != IRI_LFN) {
-        iri_last_tap_kc = 0;
-    }
     if (record->event.pressed) {
         iri_state_fn |= IRI_BIT_IRI_LFN;
-    } else if (iri_was_double_tapped(IRI_LFN, record)) {
+    } else if (iri_was_double_tapped(IRI_LFN, record, IRI_IDX_IRI_LFN)) {
         iri_locked_fn |= IRI_BIT_IRI_LFN;
     } else if (iri_locked_fn == 0x3) {
         iri_state_fn = iri_locked_fn = 0x0;
@@ -188,16 +212,14 @@ iri_process_iri_lfn(keyrecord_t *record) {
         iri_state_fn  &= ~IRI_BIT_IRI_LFN;
         iri_locked_fn &= ~IRI_BIT_IRI_LFN;
     }
+    iri_last_ts[IRI_IDX_IRI_LFN] = record->event.time;
 }
 
-static void
+static void __attribute__((always_inline))
 iri_process_iri_rfn(keyrecord_t *record) {
-    if (iri_last_tap_kc != IRI_RFN) {
-        iri_last_tap_kc = 0;
-    }
     if (record->event.pressed) {
         iri_state_fn |= IRI_BIT_IRI_RFN;
-    } else if (iri_was_double_tapped(IRI_RFN, record)) {
+    } else if (iri_was_double_tapped(IRI_LFN, record, IRI_IDX_IRI_RFN)) {
         iri_locked_fn |= IRI_BIT_IRI_RFN;
     } else if (iri_locked_fn == 0x3) {
         iri_state_fn = iri_locked_fn = 0x0;
@@ -205,9 +227,10 @@ iri_process_iri_rfn(keyrecord_t *record) {
         iri_state_fn  &= ~IRI_BIT_IRI_RFN;
         iri_locked_fn &= ~IRI_BIT_IRI_RFN;
     }
+    iri_last_ts[IRI_IDX_IRI_RFN] = record->event.time;
 }
 
-static void
+static void __attribute__((always_inline))
 iri_set_layers(void) {
     switch (iri_state_sft) {
     break;case 0x3:
@@ -240,24 +263,29 @@ process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;case KC_RSFT: iri_process_kc_rsft(record);
     break;case IRI_LFN: iri_process_iri_lfn(record);
     break;case IRI_RFN: iri_process_iri_rfn(record);
-    break;default     :
-        iri_last_kc = iri_last_tap_kc = 0;
-        return true;
+    break;default     : return true;
     }
-    iri_last_kc = keycode;
-    iri_last_ts = record->event.time;
     iri_set_layers();
     return false;
 }
 
 void
 housekeeping_task_user(void) {
-    if ((uint16_t)(timer_read() - iri_last_tap_ts) > IRI_PERIOD_DOUBLE_TAP) {
-        iri_last_tap_kc = 0;
+    uint16_t ts = timer_read() | 1;
+    for (size_t i = 0; i < IRI_N_TAP_MODS; ++i) {
+        if ((iri_last_tap_ts[i] & IRI_TAPPED) == 0) {
+            continue;
+        }
+        uint16_t d = (ts - iri_last_tap_ts[i]) & IRI_TAP_TS_MASK;
+        if (d > IRI_PERIOD_DOUBLE_TAP) {
+            iri_last_tap_ts[i] = 0;
+        }
     }
 }
 
 void
 suspend_power_down_user(void) {
-    iri_last_tap_kc = 0;
+    for (size_t i = 0; i < IRI_N_TAP_MODS; ++i) {
+        iri_last_tap_ts[i] = 0;
+    }
 }
