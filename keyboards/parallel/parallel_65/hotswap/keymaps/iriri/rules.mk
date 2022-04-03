@@ -1,4 +1,4 @@
-EXTRAFLAGS += -Wno-attributes -O2
+EXTRAFLAGS += -Wno-attributes -Ofast
 
 EXTRAKEY_ENABLE    = no
 GRAVE_ESC_ENABLE   = no

@@ -148,7 +148,7 @@ static uint16_t iri_last_tap_ts[IRI_N_TAP_MODS] = {0, 0, 0, 0};
 #define IRI_BIT_IRI_LFN 0x1
 #define IRI_BIT_IRI_RFN 0x2
 
-static uint8_t iri_state_sft = 0x0, iri_state_fn = 0x0;
+static uint8_t iri_state_sft  = 0x0, iri_state_fn  = 0x0;
 static uint8_t iri_locked_sft = 0x0, iri_locked_fn = 0x0;
 
 static bool
