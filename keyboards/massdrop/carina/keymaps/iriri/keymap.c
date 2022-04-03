@@ -144,32 +144,71 @@ led_instruction_t led_instructions[] = {
     {.end = 1},
 };
 
-static const uint16_t IRI_PERIOD_TAP        = 200;
-static const uint16_t IRI_PERIOD_DOUBLE_TAP = 300;
-
-#define IRI_IDX_KC_LSFT 0
-#define IRI_IDX_KC_RSFT 1
-#define IRI_IDX_IRI_LFN 2
-#define IRI_IDX_IRI_RFN 3
-#define IRI_N_TAP_MODS  4
-
-#define IRI_TAPPED      0x8000u
-#define IRI_TAP_TS_MASK 0x7fffu
-
-static uint16_t iri_last_ts[IRI_N_TAP_MODS]     = {0, 0, 0, 0};
-static uint16_t iri_last_tap_ts[IRI_N_TAP_MODS] = {0, 0, 0, 0};
+uint8_t iri_led_gcr_desired;
+uint8_t iri_led_animation_speed;
+uint8_t iri_led_ratio_brightness;
 
 #define IRI_BIT_KC_LSFT 0x1
 #define IRI_BIT_KC_RSFT 0x2
 #define IRI_BIT_IRI_LFN 0x1
 #define IRI_BIT_IRI_RFN 0x2
 
-static uint8_t iri_state_sft = 0x0, iri_state_fn = 0x0;
+static uint8_t iri_state_sft  = 0x0, iri_state_fn  = 0x0;
 static uint8_t iri_locked_sft = 0x0, iri_locked_fn = 0x0;
 
+static void
+iri_led_persist_eeprom(void) {
+    eeconfig_update_user(
+        (uint32_t)led_lighting_mode         <<  0 |
+        (uint32_t)led_animation_id          <<  2 |
+        (uint32_t)iri_led_gcr_desired       <<  4 |
+        (uint32_t)led_animation_direction   << 10 |
+        (uint32_t)led_animation_orientation << 11 |
+        (uint32_t)led_animation_circular    << 12 |
+        (uint32_t)iri_led_animation_speed   << 13 |
+        (uint32_t)iri_led_ratio_brightness  << 18);
+}
+
+static uint8_t __attribute__((always_inline))
+min8(uint8_t a, uint8_t b) {
+    return a < b ? a : b;
+}
+
+static void
+iri_led_set_gcr_desired(void) {
+    gcr_desired = min8(iri_led_gcr_desired * 5, LED_GCR_MAX);
+}
+
+static void
+iri_led_set_animation_speed(void) {
+    led_animation_speed = iri_led_animation_speed * 0.25;
+}
+
+static void
+iri_led_set_ratio_brightness(void) {
+    led_ratio_brightness = iri_led_ratio_brightness * 0.1;
+}
+
 void
-rgb_matrix_init_user(void) {
-    led_lighting_mode = LED_MODE_INDICATORS_ONLY;
+keyboard_post_init_user(void) {
+    uint32_t u32              = eeconfig_read_user();
+    led_lighting_mode         = u32 >>  0 & 0x03;
+    led_animation_id          = u32 >>  2 & 0x03;
+    iri_led_gcr_desired       = u32 >>  4 & 0x3F;
+    led_animation_direction   = u32 >> 10 & 0x01;
+    led_animation_orientation = u32 >> 11 & 0x01;
+    led_animation_circular    = u32 >> 12 & 0x01;
+    iri_led_animation_speed   = u32 >> 13 & 0x1F;
+    iri_led_ratio_brightness  = u32 >> 18 & 0x1F;
+    if (iri_led_gcr_desired > 33) {
+        iri_led_gcr_desired = 33;
+    }
+    iri_led_set_gcr_desired();
+    iri_led_set_animation_speed();
+    if (iri_led_ratio_brightness > 20) {
+        iri_led_ratio_brightness = 20;
+    }
+    iri_led_set_ratio_brightness();
 }
 
 _Static_assert(((LED_MODE_MAX_INDEX + 1) & LED_MODE_MAX_INDEX) == 0);
@@ -181,6 +220,7 @@ iri_led_cycle_mode(keyrecord_t *record) {
     }
     led_lighting_mode += iri_state_sft == 0x0 ? 1 : -1;
     led_lighting_mode %= LED_MODE_MAX_INDEX + 1;
+    iri_led_persist_eeprom();
 }
 
 // _Static_assert((led_setups_count & (led_setups_count - 1)) == 0);
@@ -192,6 +232,7 @@ iri_led_cycle_pattern(keyrecord_t *record) {
     }
     led_animation_id += iri_state_sft == 0x0 ? 1 : -1;
     led_animation_id %= led_setups_count;
+    iri_led_persist_eeprom();
 }
 
 static void
@@ -200,18 +241,16 @@ iri_led_mod_brightness(keyrecord_t *record) {
         return;
     }
     if (iri_state_sft == 0x0) {
-        if (LED_GCR_STEP > LED_GCR_MAX - gcr_desired) {
-            gcr_desired = LED_GCR_MAX;
-        } else {
-            gcr_desired += LED_GCR_STEP;
+        if (++iri_led_gcr_desired > 33) {
+            iri_led_gcr_desired = 33;
         }
     } else {
-        if (LED_GCR_STEP > gcr_desired) {
-            gcr_desired = 0;
-        } else {
-            gcr_desired -= LED_GCR_STEP;
+        if (--iri_led_gcr_desired > 33) {
+            iri_led_gcr_desired = 0;
         }
     }
+    iri_led_set_gcr_desired();
+    iri_led_persist_eeprom();
 }
 
 static void
@@ -249,6 +288,7 @@ iri_led_cycle_direction(keyrecord_t *record) {
         led_animation_orientation = 0;
         led_animation_circular = 0;
     }
+    iri_led_persist_eeprom();
 }
 
 static void
@@ -257,13 +297,16 @@ iri_led_mod_speed(keyrecord_t *record) {
         return;
     }
     if (iri_state_sft == 0x0) {
-        led_animation_speed += 0.25;
+        if (++iri_led_animation_speed > 31) {
+            iri_led_animation_speed = 31;
+        }
     } else {
-        led_animation_speed -= 0.25;
-        if (led_animation_speed < 0) {
-            led_animation_speed = 0;
+        if (--iri_led_animation_speed > 31) {
+            iri_led_animation_speed = 0;
         }
     }
+    iri_led_set_animation_speed();
+    iri_led_persist_eeprom();
 }
 
 static void
@@ -272,17 +315,32 @@ iri_led_mod_ratio(keyrecord_t *record) {
         return;
     }
     if (iri_state_sft == 0x0) {
-        led_ratio_brightness += 0.1;
-        if (led_ratio_brightness > 2.0) {
-            led_ratio_brightness = 2.0;
+        if (++iri_led_ratio_brightness > 20) {
+            iri_led_ratio_brightness = 20;
         }
     } else {
-        led_ratio_brightness -= 0.1;
-        if (led_ratio_brightness < 0.0) {
-            led_ratio_brightness = 0.0;
+        if (--iri_led_ratio_brightness > 20) {
+            iri_led_ratio_brightness = 0;
         }
     }
+    iri_led_set_ratio_brightness();
+    iri_led_persist_eeprom();
 }
+
+static const uint16_t IRI_PERIOD_TAP        = 200;
+static const uint16_t IRI_PERIOD_DOUBLE_TAP = 300;
+
+#define IRI_IDX_KC_LSFT 0
+#define IRI_IDX_KC_RSFT 1
+#define IRI_IDX_IRI_LFN 2
+#define IRI_IDX_IRI_RFN 3
+#define IRI_N_TAP_MODS  4
+
+#define IRI_TAPPED      0x8000u
+#define IRI_TAP_TS_MASK 0x7fffu
+
+static uint16_t iri_last_ts[IRI_N_TAP_MODS]     = {0, 0, 0, 0};
+static uint16_t iri_last_tap_ts[IRI_N_TAP_MODS] = {0, 0, 0, 0};
 
 static bool
 iri_was_double_tapped(uint16_t keycode, keyrecord_t *record, size_t idx) {
