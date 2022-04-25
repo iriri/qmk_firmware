@@ -43,9 +43,9 @@ typedef enum {
     IRI_SI  = UC(0x221E),
     IRI_SO  = UC(0x2203),
     IRI_SP  = UC(0x2202),
-    IRI_SLB = UC(0x2329),
-    IRI_SRB = UC(0x232A),
-    IRI_SBS = UC(0x2219),
+    IRI_SLB = UC(0x2208),
+    IRI_SRB = UC(0x2209),
+    IRI_SBS = UC(0x2205),
 
     IRI_SA  = UC(0x22A5),
     IRI_SS  = UC(0x22A4),
@@ -68,7 +68,7 @@ typedef enum {
     IRI_SM  = UC(0x2265),
     IRI_SCM = UC(0x00AB),
     IRI_SPR = UC(0x00BB),
-    IRI_SSL = UC(0x00F7),
+    IRI_SSL = UC(0x2219),
 
     IRI_FQ = UC(0x00B9),
     IRI_FW = UC(0x00B2),
@@ -128,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,                            KC_TRNS,                            KC_TRNS, KC_TRNS,          KC_HOME, KC_PGDN, KC_END),
 };
 
-static const uint16_t IRI_PERIOD_TAP        = 200;
+static const uint16_t IRI_PERIOD_TAP        = 100;
 static const uint16_t IRI_PERIOD_DOUBLE_TAP = 300;
 
 #define IRI_IDX_KC_LSFT 0
