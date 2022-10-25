@@ -1,5 +1,3 @@
-EXTRAFLAGS += -Wno-attributes -O2
-
 EXTRAKEY_ENABLE    = no
 GRAVE_ESC_ENABLE   = no
 LTO_ENABLE         = yes
